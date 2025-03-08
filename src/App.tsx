@@ -1,14 +1,18 @@
-import { Link, Outlet } from 'react-router'
+import { Outlet } from 'react-router'
 import './App.css'
+import MainLayout from './layouts/main-layout'
+
 
 function App() {
 
   return (
     <>
         <div>
-      <nav>
+       
+      {/* <nav>
         <Link to="/">Home</Link> | <Link to="/about">About</Link>
-      </nav>
+      </nav> */}
+      <MainLayout />
       <Outlet /> 
     </div>
     </>

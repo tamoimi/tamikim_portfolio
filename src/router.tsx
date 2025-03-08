@@ -1,22 +1,32 @@
+import { createBrowserRouter } from "react-router"; 
+import MainLayout from "./layouts/main-layout";
+import About from "./pages/about";
+import NotFound from "./pages/not-found";
+import Home from "./pages/home";
+import ThreeScene from "./components/ui/three-scene";
 
-import { createBrowserRouter } from 'react-router';
-import App from './App';
-import About from './pages/about';
-import NotFound from './pages/not-found';
-// import About from './pages/About';
-// import NotFound from './pages/NotFound';
 
 export const router = createBrowserRouter([
   {
-    path: '/',
-    element: <App />,
+    path: "/",
+    element: <MainLayout />, 
+    children: [
+      {
+        index: true, 
+        element: <Home />,
+      },
+      {
+        path: "about",
+        element: <About />,
+      },
+        {
+        path: "playground",
+        element: <ThreeScene />, 
+      },
+      {
+        path: "*",
+        element: <NotFound />,
+      },
+    ],
   },
-  {
-    path: '/about',
-    element: <About />,
-  },
-  {
-    path: '*',
-    element: <NotFound />,
-  }
 ]);

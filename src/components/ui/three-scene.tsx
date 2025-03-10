@@ -216,36 +216,38 @@ function DraggableCherry({ position }: Props) {
 
 function ThreeScene() {
   return (
-    <>
-      <div className="font-Line-EN p-2">
-        I am just having fun here, if you want to go back{" "}
+    <div className="h-screen flex flex-col overflow-hidden">
+      <div className="font-Line-EN p-4 text-center">
+        I am just having fun here, if you want to go back
         <Button asChild variant={"link"}>
           <Link to={"/"}>click here</Link>
         </Button>
       </div>
-      <Canvas
-        shadows
-        style={{ height: "100vh", width: "100%" }}
-        camera={{ position: [0, 2, 5], fov: 50 }}
-      >
-        {/* 조명 설정 */}
-        <ambientLight intensity={0.4} />
-        <spotLight
-          position={[5, 10, 5]}
-          angle={0.3}
-          penumbra={1}
-          intensity={1.5}
-          castShadow
-          shadow-mapSize={[2048, 2048]}
-          shadow-bias={-0.0001}
-        />
-        <pointLight position={[-5, -5, -5]} intensity={0.5} />
-        <pointLight position={[3, 2, 1]} intensity={0.3} color="#ffeeee" />
+      <div className="flex-grow">
+        <Canvas
+          shadows
+          style={{ width: "100%", height: "100%" }}
+          camera={{ position: [0, 2, 5], fov: 50 }}
+        >
+          {/* 조명 설정 */}
+          <ambientLight intensity={0.4} />
+          <spotLight
+            position={[5, 10, 5]}
+            angle={0.3}
+            penumbra={1}
+            intensity={1.5}
+            castShadow
+            shadow-mapSize={[2048, 2048]}
+            shadow-bias={-0.0001}
+          />
+          <pointLight position={[-5, -5, -5]} intensity={0.5} />
+          <pointLight position={[3, 2, 1]} intensity={0.3} color="#ffeeee" />
 
-        {/* 드래그 가능한 체리 오브젝트 */}
-        <DraggableCherry position={[0, 0, 0]} />
-      </Canvas>
-    </>
+          {/* 드래그 가능한 체리 오브젝트 */}
+          <DraggableCherry position={[0, 0, 0]} />
+        </Canvas>
+      </div>
+    </div>
   );
 }
 

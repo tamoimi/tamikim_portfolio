@@ -5,7 +5,14 @@ function Home() {
   return (
     <>
         <div>
+   <h1>{t('home.name')}</h1>
    <h1>{t('Welcome to React')}</h1>
+   <h1>{t('Welcome to React')}</h1>
+   <ul className="flex gap-3">
+    <li>github</li>
+    <li>linkedin</li>
+    <li>insta</li>
+   </ul>
     </div>
     </>
   )

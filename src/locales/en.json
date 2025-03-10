@@ -1,3 +1,5 @@
 {
-  "Welcome to React": "Welcome to my blog"
+  "home":{
+    "name": "Taekyung Kim"
+  }
 }

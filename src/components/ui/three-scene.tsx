@@ -1,6 +1,8 @@
 import { Canvas, ThreeEvent, useFrame } from "@react-three/fiber";
 import { useRef, useState } from "react";
 import { DirectionalLight, Group, Plane, Raycaster, Vector3 } from "three";
+import { Button } from "./button";
+import { Link } from "react-router";
 
 interface Props {
   position: [number, number, number];
@@ -10,10 +12,14 @@ function DraggableCherry({ position }: Props) {
   const groupRef = useRef<Group | null>(null);
   const cherryLightRef = useRef<DirectionalLight | null>(null);
   const [isDragging, setIsDragging] = useState(false);
-  const [lastMousePosition, setLastMousePosition] = useState<{ x: number; y: number } | null>(null);
+  const [lastMousePosition, setLastMousePosition] = useState<{
+    x: number;
+    y: number;
+  } | null>(null);
   const rotationVelocity = useRef({ x: 0, y: 0 });
 
-  const [cherryPosition, setCherryPosition] = useState<[number, number, number]>(position);
+  const [cherryPosition, setCherryPosition] =
+    useState<[number, number, number]>(position);
   const targetPosition = useRef<Vector3>(new Vector3(...position));
   const dragOffset = useRef(new Vector3());
   const raycaster = useRef(new Raycaster());
@@ -58,14 +64,22 @@ function DraggableCherry({ position }: Props) {
 
     if (event.camera) {
       // 카메라 방향을 기준으로 드래그 평면 설정
-      const planeNormal = new Vector3().subVectors(event.camera.position, startPosition).normalize();
-      dragPlane.current.setFromNormalAndCoplanarPoint(planeNormal, startPosition);
+      const planeNormal = new Vector3()
+        .subVectors(event.camera.position, startPosition)
+        .normalize();
+      dragPlane.current.setFromNormalAndCoplanarPoint(
+        planeNormal,
+        startPosition
+      );
 
       raycaster.current.setFromCamera(event.pointer, event.camera);
 
       // 레이캐스터와 평면의 교차점 계산
       const intersectionPoint = new Vector3();
-      raycaster.current.ray.intersectPlane(dragPlane.current, intersectionPoint);
+      raycaster.current.ray.intersectPlane(
+        dragPlane.current,
+        intersectionPoint
+      );
       dragOffset.current.subVectors(startPosition, intersectionPoint);
     }
   };
@@ -85,7 +99,12 @@ function DraggableCherry({ position }: Props) {
         raycaster.current.setFromCamera(event.pointer, event.camera);
 
         const intersectionPoint = new Vector3();
-        if (raycaster.current.ray.intersectPlane(dragPlane.current, intersectionPoint)) {
+        if (
+          raycaster.current.ray.intersectPlane(
+            dragPlane.current,
+            intersectionPoint
+          )
+        ) {
           intersectionPoint.add(dragOffset.current); // 오프셋을 적용하여 새로운 위치 계산
           targetPosition.current.copy(intersectionPoint);
         }
@@ -162,17 +181,32 @@ function DraggableCherry({ position }: Props) {
       </mesh>
 
       {/* 체리 줄기 */}
-      <mesh position={[-0.3, 0.9, 0]} rotation={[0, 0, -0.6]} castShadow receiveShadow>
+      <mesh
+        position={[-0.3, 0.9, 0]}
+        rotation={[0, 0, -0.6]}
+        castShadow
+        receiveShadow
+      >
         <cylinderGeometry args={[0.05, 0.05, 1, 16]} />
         <meshStandardMaterial color="green" roughness={0.6} shadowSide={2} />
       </mesh>
-      <mesh position={[0.3, 0.9, 0]} rotation={[0, 0, 0.6]} castShadow receiveShadow>
+      <mesh
+        position={[0.3, 0.9, 0]}
+        rotation={[0, 0, 0.6]}
+        castShadow
+        receiveShadow
+      >
         <cylinderGeometry args={[0.05, 0.05, 1, 16]} />
         <meshStandardMaterial color="green" roughness={0.6} shadowSide={2} />
       </mesh>
 
       {/* 잎 */}
-      <mesh position={[0, 1.3, 0]} rotation={[Math.PI / 2, 0, 1.5]} castShadow receiveShadow>
+      <mesh
+        position={[0, 1.3, 0]}
+        rotation={[Math.PI / 2, 0, 1.5]}
+        castShadow
+        receiveShadow
+      >
         <cylinderGeometry args={[0.05, 0.05, 0.6, 16]} />
         <meshStandardMaterial color="green" roughness={0.6} shadowSide={2} />
       </mesh>
@@ -182,28 +216,36 @@ function DraggableCherry({ position }: Props) {
 
 function ThreeScene() {
   return (
-    <Canvas
-      shadows
-      style={{ height: "100vh", width: "100%" }}
-      camera={{ position: [0, 2, 5], fov: 50 }}
-    >
-      {/* 조명 설정 */}
-      <ambientLight intensity={0.4} />
-      <spotLight
-        position={[5, 10, 5]}
-        angle={0.3}
-        penumbra={1}
-        intensity={1.5}
-        castShadow
-        shadow-mapSize={[2048, 2048]}
-        shadow-bias={-0.0001}
-      />
-      <pointLight position={[-5, -5, -5]} intensity={0.5} />
-      <pointLight position={[3, 2, 1]} intensity={0.3} color="#ffeeee" />
+    <>
+      <div className="font-Line-EN p-2">
+        I am just having fun here, if you want to go back{" "}
+        <Button asChild variant={"link"}>
+          <Link to={"/"}>click here</Link>
+        </Button>
+      </div>
+      <Canvas
+        shadows
+        style={{ height: "100vh", width: "100%" }}
+        camera={{ position: [0, 2, 5], fov: 50 }}
+      >
+        {/* 조명 설정 */}
+        <ambientLight intensity={0.4} />
+        <spotLight
+          position={[5, 10, 5]}
+          angle={0.3}
+          penumbra={1}
+          intensity={1.5}
+          castShadow
+          shadow-mapSize={[2048, 2048]}
+          shadow-bias={-0.0001}
+        />
+        <pointLight position={[-5, -5, -5]} intensity={0.5} />
+        <pointLight position={[3, 2, 1]} intensity={0.3} color="#ffeeee" />
 
-      {/* 드래그 가능한 체리 오브젝트 */}
-      <DraggableCherry position={[0, 0, 0]} />
-    </Canvas>
+        {/* 드래그 가능한 체리 오브젝트 */}
+        <DraggableCherry position={[0, 0, 0]} />
+      </Canvas>
+    </>
   );
 }
 

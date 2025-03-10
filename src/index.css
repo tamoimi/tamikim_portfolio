@@ -12,11 +12,27 @@
 }
 
 @font-face {
+  font-family: 'Line-name';
+  src: url('/public/fonts/en-fonts/LINESeedSans_W_Bd.woff') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'Line-EN';
   src: url('/public/fonts/en-fonts/Inter_18pt-Regular.ttf') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'Line-EN';
+  src: url('/public/fonts/en-fonts/Inter_18pt-Bold.ttf') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+
+
 
 .font-Line-KO {
   font-family: 'Line-KO', sans-serif;

@@ -1,7 +1,4 @@
-// icons.tsx
-import React from "react";
 
-// 아이콘 컴포넌트 정의
 export const PuzzleIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"

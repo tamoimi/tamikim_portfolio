@@ -7,7 +7,7 @@ import Experience from "./experience";
 import Project from "./project";
 
 function Home() {
-  // 🦦 이모지를 저장할 배열
+  // 이모지를 저장할 배열
   const [emojis, setEmojis] = useState<
     { id: number; angle: number; distance: number; delay: number }[]
   >([]);
@@ -32,7 +32,7 @@ function Home() {
   return (
     <>
       <div className=" px-5 lg:px-40 bg-slate-100 font-Line-EN flex flex-col gap-20 lg:flex-row lg:gap-10">
-        {/* 🦦 이모지 애니메이션 */}
+        {/* 이모지 애니메이션 */}
         {emojis.map(({ id, angle, distance, delay }) => (
           <motion.div
             key={id}
@@ -56,7 +56,7 @@ function Home() {
               transform: "translate(-50%, -50%)",
             }}
           >
-            🦦
+            🐱‍🏍
           </motion.div>
         ))}
         {/* 왼쪽 sticky 영역 */}
@@ -94,7 +94,7 @@ function Home() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Insta
+                  Instagram
                 </a>
               </Button>
             </li>
@@ -103,14 +103,13 @@ function Home() {
                 <Link to="/playground">Playground</Link>
               </Button>
             </li>
-            {/* 🦦 이모지 발사 버튼 */}
             <li>
               <Button
                 variant="outline"
                 className="cursor-pointer"
                 onClick={handleClick}
               >
-                Release 🦦
+                Release
               </Button>
             </li>
           </ul>
@@ -120,7 +119,7 @@ function Home() {
         <div className="lg:py-15 flex-1 lg:w-[60%] ">
           {/* About */}
           <div className="relative">
-            <h2 className="sticky top-0 bg-slate-100 z-10 font-bold py-3 transition-all duration-300">
+            <h2 className="sticky top-0 bg-slate-100 z-10 font-bold py-5 transition-all duration-300">
               ABOUT
             </h2>
             <About />
@@ -128,7 +127,7 @@ function Home() {
 
           {/* Experience */}
           <div className="relative my-24">
-            <h2 className="sticky top-0 bg-slate-100 z-10 font-bold py-3 transition-all duration-300">
+            <h2 className="sticky top-0 bg-slate-100 z-10 font-bold py-5 transition-all duration-300">
               EXPERIENCE
             </h2>
             <Experience />
@@ -136,7 +135,7 @@ function Home() {
 
           {/* Project */}
           <div className="relative">
-            <h2 className="sticky top-0 bg-slate-100 z-10 font-bold py-3 transition-all duration-300">
+            <h2 className="sticky top-0 bg-slate-100 z-10 font-bold py-5 transition-all duration-300">
               PROJECT
             </h2>
             <Project />

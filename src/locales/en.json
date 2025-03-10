@@ -1,5 +1,9 @@
 {
   "home":{
-    "name": "Taekyung Kim"
+    "name": "Taekyung Kim",
+    "role": "Front End Engineer"
+  },
+  "about":{
+    "text": "I build accessible, pixel-perfect digital experiences for the web."
   }
 }

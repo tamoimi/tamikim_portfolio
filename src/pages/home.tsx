@@ -1,4 +1,11 @@
 import { Button } from "@/components/ui/button";
+import {
+  CookieIcon,
+  GitHubLogoIcon,
+  InstagramLogoIcon,
+  LinkedInLogoIcon,
+  RocketIcon,
+} from "@radix-ui/react-icons";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Link, Outlet } from "react-router";
@@ -56,12 +63,12 @@ function Home() {
               transform: "translate(-50%, -50%)",
             }}
           >
-            🐱‍🏍
+            🛸
           </motion.div>
         ))}
         {/* 왼쪽 sticky 영역 */}
         <div className="py-10 lg:w-[40%] lg:sticky lg:top-0 lg:h-screen lg:py-20 flex flex-col gap-3">
-          <h1 className="text-5xl font-bold">Taekyung Kim</h1>
+          <h1 className="text-4xl lg:text-5xl font-bold">Taekyung Kim</h1>
           <h1 className="text-xl font-bold">Front End Engineer</h1>
           <h1>I turn logic into art and complexity into simplicity.</h1>
           <ul className="flex flex-wrap gap-2 items-center text-xs lg:text-sm lg:mt-10">
@@ -72,7 +79,7 @@ function Home() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Github
+                  <GitHubLogoIcon />
                 </a>
               </Button>
             </li>
@@ -83,7 +90,7 @@ function Home() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Linkedin
+                  <LinkedInLogoIcon />
                 </a>
               </Button>
             </li>
@@ -94,13 +101,15 @@ function Home() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Instagram
+                  <InstagramLogoIcon />
                 </a>
               </Button>
             </li>
             <li>
               <Button asChild variant="outline">
-                <Link to="/playground">Playground</Link>
+                <Link to="/playground">
+                  <CookieIcon />
+                </Link>
               </Button>
             </li>
             <li>
@@ -109,7 +118,7 @@ function Home() {
                 className="cursor-pointer"
                 onClick={handleClick}
               >
-                Release
+                <RocketIcon />
               </Button>
             </li>
           </ul>
@@ -119,7 +128,7 @@ function Home() {
         <div className="lg:py-15 flex-1 lg:w-[60%] ">
           {/* About */}
           <div className="relative">
-            <h2 className="sticky top-0 bg-slate-100 z-10 font-bold py-5 transition-all duration-300">
+            <h2 className="sticky top-0 bg-slate-100 opacity-90 z-10 font-bold py-5 transition-all duration-300">
               ABOUT
             </h2>
             <About />
@@ -127,15 +136,15 @@ function Home() {
 
           {/* Experience */}
           <div className="relative my-24">
-            <h2 className="sticky top-0 bg-slate-100 z-10 font-bold py-5 transition-all duration-300">
+            <h2 className="sticky top-0 bg-slate-100 opacity-90 z-10 font-bold py-5 transition-all duration-300">
               EXPERIENCE
             </h2>
             <Experience />
           </div>
 
           {/* Project */}
-          <div className="relative">
-            <h2 className="sticky top-0 bg-slate-100 z-10 font-bold py-5 transition-all duration-300">
+          <div className="relative mb-10">
+            <h2 className="sticky top-0 bg-slate-100 opacity-90 z-10 font-bold py-5 transition-all duration-300">
               PROJECT
             </h2>
             <Project />
